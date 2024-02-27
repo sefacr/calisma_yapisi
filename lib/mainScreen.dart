@@ -18,6 +18,10 @@ class _MainScreenState extends State<MainScreen> {
     print("initState() çalıştı");
   }
 
+  Future<int> sum(num1, num2) async {  
+    return num1 + num2;
+  }
+
   @override
   Widget build(BuildContext context) {
     print("build methodu çalıştı");
@@ -64,6 +68,19 @@ class _MainScreenState extends State<MainScreen> {
                 state = false;
               });
             }, child: const Text("Durum (False)")
+            ),
+            FutureBuilder<int>(
+              future: sum(10, 20),
+              builder: (context,snapshot){
+                if(snapshot.hasError){//hata var mı kontrolü
+                  return const Text("Hata var");
+                }
+                if(snapshot.hasData){
+                  return Text("Sonuç: : ${snapshot.data}");
+                }else {
+                  return const Text("Sonuç Yok");
+                }
+              },
             ),
           ],
         ),
