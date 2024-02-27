@@ -12,10 +12,22 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+
+  Future<bool> backAction(BuildContext context) async {
+    print("Navigation geri yapıldı");
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Game Screen"),),
+      appBar: AppBar(
+        title: const Text("Game Screen"),
+        leading: IconButton(onPressed: () {
+          print("Appbardaki back buton tıklandı");
+          Navigator.pop(context);
+        }, icon: const Icon(Icons.ac_unit_sharp),),
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
